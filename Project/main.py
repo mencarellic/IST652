@@ -11,6 +11,9 @@ pd.set_option('display.max_colwidth', -1)
 username = ''
 password = ''
 
+if (username == '') or (password == ''):
+    exit('Error!\n\nUsername and password must be specified')
+
 # Connect to the mongoDB instance
 conn = pymongo.MongoClient("mongodb+srv://" + username + ":" + password +"@ist652-sd5uf.mongodb.net/test?retryWrites=true")
 
@@ -21,7 +24,7 @@ def mongo_to_df(connection, database, collection, n=0, rand=False, query={}):
         db = connection[database]
         coll = db[collection]
     except Exception as e:
-        exit(e)
+        exit('Error\n\n{}'.format(e))
 
     # Get number of documents in collection for the query
     count = coll.count_documents(filter=query)
@@ -29,7 +32,7 @@ def mongo_to_df(connection, database, collection, n=0, rand=False, query={}):
     # If the result has 0 documents, exit
     # Else print number found
     if count == 0:
-        exit('Query matched no documents')
+        exit('Error!\n\nQuery matched no documents')
     else:
         print('Found {:d} documents.\n'.format(count))
 
