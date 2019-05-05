@@ -4,11 +4,15 @@ import pymongo
 #import dnspython
 
 # Show all columns and do not truncate in a DF
-# pd.set_option('display.max_columns', None)
-# pd.set_option('display.max_colwidth', -1)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_colwidth', -1)
+
+# MongoDB credentials
+username = ''
+password = ''
 
 # Connect to the mongoDB instance
-conn = pymongo.MongoClient("mongodb+srv://access:nhk35zjuKQATrmum@ist652-sd5uf.mongodb.net/test?retryWrites=true")
+conn = pymongo.MongoClient("mongodb+srv://" + username + ":" + password +"@ist652-sd5uf.mongodb.net/test?retryWrites=true")
 
 
 def mongo_to_df(connection, database, collection, n=0, rand=False, query={}):
