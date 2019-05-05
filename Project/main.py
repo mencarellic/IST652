@@ -1,7 +1,5 @@
 import pandas as pd
-import random
 import pymongo
-#import dnspython
 
 # Show all columns and do not truncate in a DF
 pd.set_option('display.max_columns', None)
@@ -66,6 +64,7 @@ def mongo_to_df(connection, database, collection, n=0, rand=False, query={}):
     df.replace(r'(\s)+', ' ', regex=True, inplace=True)
 
     return df
+
 
 thebeatles = mongo_to_df(connection=conn, database='Project', collection='songdata',
                          query={'artist': 'The Beatles'}, n=25, rand=True)
